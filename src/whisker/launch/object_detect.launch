@@ -1,0 +1,4 @@
+<launch>
+
+  <node name="object_detect" pkg="whisker" type="object_detect" output="screen"/>
+</launch>
