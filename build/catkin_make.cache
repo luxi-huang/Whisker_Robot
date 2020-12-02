@@ -1,2 +1,0 @@
-whisker
--DCATKIN_DEVEL_PREFIX=/home/luxi/github_projects/Whisker_Robot/devel -DCMAKE_INSTALL_PREFIX=/home/luxi/github_projects/Whisker_Robot/install -G Unix Makefiles

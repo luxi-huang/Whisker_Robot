@@ -1,8 +1,0 @@
-prefix=/home/luxi/github_projects/Whisker_Robot/install
-
-Name: whisker
-Description: Description of whisker
-Version: 0.0.0
-Cflags: -I${prefix}/include
-Libs: -L${prefix}/lib 
-Requires: 
