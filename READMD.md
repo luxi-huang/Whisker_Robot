@@ -4,52 +4,39 @@
 ---
 
 ##  Package description:
-* This SLAM project is using whisker touching sensor to detect and building a map. 
-* It implement (link) simulation to get whisker sensor data. As shown figure 1.
-* Then it transfer the whisker data to to 2D laser scan data. 
-* It implement with (link) SLAM_toolbox to build map. 
+* This SLAM project is using whisker touching sensor to detect object and building a map. 
+* It implement [Whisker Physics Simulator](https://github.com/SeNSE-lab/whiskitphysics)simulation to get whisker sensor data.
+* Then it transfer the whisker 3D sensor data to 2D laser scan data and implement with  [Slam_toolbox](https://github.com/SteveMacenski/slam_toolbox) to build the map. 
+ 
+ <p align="middle"> <img src="https://github.com/luxi-huang/Whisker_Robot/blob/master/img/Whisker_simulator.gif?raw=true" alt="drawing" /> </p>  
 
-##
- <p align="middle"> <img src="https://github.com/luxi-huang/Turtulebot3-Navigation/blob/master/img/rect.gif?raw=true" alt="drawing" /> </p>  
+
+ <p align="middle"> <img src="https://github.com/luxi-huang/Whisker_Robot/blob/master/img/whisker.gif?raw=true" alt="drawing" /> </p>  
+
+## 
+ <p align="middle"> <img src="https://github.com/luxi-huang/Whisker_Robot/blob/master/img/Map.png?raw=true" alt="drawing" /> </p>  
 
 ## Package files:
 ### 1. `src/object_detection_node.cpp`:
-- This file initial `NodeHandle` and create `object_detection` node. It includes `TurtleRect` class to make turtle move in  a rectangular trajectory infinitely.
--  It predict turtle position, and draw `rqt_plot` of absolute pose error (x,y,theta).
--  Turtle can be reset to left corner of rectangular by call `traj_reset` service. 
+- This file initial `NodeHandle` and create `object_detection` node. It includes `ObjectDetect` class to convert whisker sensor data to 2D scan data and build the map. 
 
-### 2. `src/turtle_rect.cpp`:
-- This is the Class Constructor for `TurtleRect`.
+### 2. `src/object_detect.cpp`:
+- This is the Class Constructor for `ObjectDetect`.
 
 ### 3. `include/turtle_rect.cpp`:
-- Header file for the `TurtleRect` class.
+- Header file for the `ObjectDetect` class.
 
-### 4. `launch/trect.launch` :
--  This launch file runs a window to shows a turtle move in  a rectangular trajectory, and draw `rqt_graph` of show turtle pose error. It launch following files:
-   - `turtle_rect` node 
-   - `turtlelism` node 
-   - `turtle_rect.yaml` file 
-   - `rqt_plot` node
+### 4. `launch/object_detect.launch` :
+-  The launch file include all node files for whisker sensor data detect objects and build mapping.  
 
-### 5. `config/turtle_rect.yaml` :
-   - It contains following robot path control parameters:
-   - `x`: The x coordinate of the lower left corner of a rectangle
-   - `y`: The y coordinate of the lower left corner of a rectangle
-   - `width`: The width of the rectangle
-   - `height`: The height of the rectangle
-   - `trans_vel`: The translational velocity of the robot
-   - `rot_vel`: The rotational velocity of the robot
-   - `frequency`: The frequency of the control loop
+### 5. data/
+- It contains all whisker sensor data which got from [Whisker Physics Simulator](https://github.com/SeNSE-lab/whiskitphysics).
 
-## Launch Files
-```
-$ roslaunch tsim trect.launch --ros-args
-```
-Optional Arguments:
-   - `plot_gui` （default "false"） : set value to true to draw rqt_plot of robot pose error (x, y, theta).
-     - `roslaunch tsim trect.launch plot_gui：=true`
+## How to use files
+1. Clone the files and using wstool to download all related packages.
 
-## Result rqt_plot for turtle_rect :
+2. ``` $ roslaunch whisker object_detect.launch ```
 
-The Below chart is the error between predict turtle pose and real turtle pose. 
- <p align="middle"> <img src="https://github.com/luxi-huang/Turtulebot3-Navigation/blob/master/img/turtleRect_errorPlot.png?raw=true" alt="drawing" /> </p>  
+3. ``` $ rostopic echo /scan ```
+
+4. open Rviz, change frame to map, and add map and other topics.
