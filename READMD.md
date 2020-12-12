@@ -37,6 +37,8 @@
 
 2. ``` $ roslaunch whisker object_detect.launch ```
 
+3. ``` $ roslaunch slam_toolbox offline.launch ``` 
+
 3. ``` $ rostopic echo /scan ```
 
 4. open Rviz, change frame to map, and add map and other topics.
