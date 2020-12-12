@@ -1,0 +1,38 @@
+<launch>
+  
+  <node name="object_detect" pkg="whisker" type="object_detect" output="screen"/>
+  
+  <node name="point_cloud_converter" pkg="point_cloud_converter" type="point_cloud_converter_node" output="screen">
+    <remap from="points_in" to="/cloud"/>
+    <remap from="points2_out" to="/cloud2"/>
+  </node>
+
+  <node pkg="tf" type="static_transform_publisher" name="link1_broadcaster" args="0 0 0 0 0 0 1 odom base_link 100" />
+
+  <node pkg="pointcloud_to_laserscan" type="pointcloud_to_laserscan_node" name="pointcloud_to_laserscan" output="screen">
+    <remap from="cloud_in" to="/cloud2"/>
+    <remap from="scan" to="/scan"/>
+    <rosparam>
+      target_frame: odom
+      transform_tolerance: 0.01
+      min_height: -2.0
+      max_height: 2.0
+      
+      angle_min:  -3.14159
+      angle_max:  3.14159
+      angle_increment: 0.005796296
+      scan_time: 0.3333
+      range_min: 0.001
+      range_max: 40.0
+      use_inf: true
+      inf_epsilon: 1.0
+      
+      #concurrency_level affects number of pc queued for processing and the number of threadsused
+      # 0: Detect number of cores
+      # 1: Single threaded
+      # 2: inf : Parallelism level
+      concurrency_level: 1
+    </rosparam>
+  </node>
+
+</launch>

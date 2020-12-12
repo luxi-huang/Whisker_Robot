@@ -1,0 +1,8 @@
+- git:
+    local-name: src/point_cloud_to_laser_scan
+    uri: https://github.com/luxi-huang/pointcloud_to_laserscan_melodic.git
+    version: melodic-devel
+- git:
+    local-name: src/slam_toolbox
+    uri: https://github.com/SteveMacenski/slam_toolbox.git
+    version: melodic-devel
