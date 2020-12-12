@@ -5,7 +5,7 @@
 
 ##  Package description:
 * This SLAM project is using whisker touching sensor to detect object and building a map. 
-* It implement [Whisker Physics Simulator](https://github.com/SeNSE-lab/whiskitphysics)simulation to get whisker sensor data.
+* It implement [Whisker Physics Simulator](https://github.com/SeNSE-lab/whiskitphysics) to get whisker sensor data.
 * Then it transfer the whisker 3D sensor data to 2D laser scan data and implement with  [Slam_toolbox](https://github.com/SteveMacenski/slam_toolbox) to build the map. 
  
  <p align="middle"> <img src="https://github.com/luxi-huang/Whisker_Robot/blob/master/img/Whisker_simulator.gif?raw=true" alt="drawing" /> </p>  
@@ -23,7 +23,7 @@
 ### 2. `src/object_detect.cpp`:
 - This is the Class Constructor for `ObjectDetect`.
 
-### 3. `include/turtle_rect.cpp`:
+### 3. `include/object_detect.hpp`:
 - Header file for the `ObjectDetect` class.
 
 ### 4. `launch/object_detect.launch` :
