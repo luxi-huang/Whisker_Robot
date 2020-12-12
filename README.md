@@ -4,7 +4,7 @@
 ---
 
 ##  Package description:
-* This SLAM project is using whisker touching sensor to detect object and building a map. 
+* This SLAM project is using whisker touching sensor to do object detection and map building. 
 * It implement [Whisker Physics Simulator](https://github.com/SeNSE-lab/whiskitphysics) to get whisker sensor data.
 * Then it transfer the whisker 3D sensor data to 2D laser scan data and implement with  [Slam_toolbox](https://github.com/SteveMacenski/slam_toolbox) to build the map. 
  
